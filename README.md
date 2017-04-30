@@ -48,7 +48,7 @@ local Code	= [[
 	#Storage:[Serv game, "StarterGui"]
 
 	<ScreenGui Name:'Test' Parent:Storage>
-		<~Frame ; The ~ means it is automatically closed.
+		<~Frame
 			Name:'Top'
 			Size:[UDim2 1, 0, 0.1, 0]
 		>
