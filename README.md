@@ -11,6 +11,8 @@ It is to be noted that the compiler and interpreter are independent and do not r
 
 As always; I am not perfect so please inform me of any bugs!
 
+*Note: For those of you who may be a bit more into it or advanced I have created a decompiler you can debug with.*
+
 ## Example
 Html is the closest syntax highlighting I can get to.
 
