@@ -6,7 +6,7 @@ The language has a style similar to that of HTML and the like.
 While it is made for use in ROBLOX to create instances you can use it with whatever system you have by simply changing the `Instance.new` local inside of it.
 
 The language was inspired by [cntkillme](https://www.roblox.com/users/294568/profile) but with a different take on the structure.
-This source is entirely made by [Rerumu](https://www.roblox.com/users/294568/profile).
+This source is entirely made by [Rerumu](https://www.roblox.com/users/70540486/profile).
 It is to be noted that the compiler and interpreter are independent and do not rely on eachother. That said, you can pre-compile your code into bytecode strings and they will run normally at runtime or be sent over machines to be interpreted.
 
 As always; I am not perfect so please inform me of any bugs!
