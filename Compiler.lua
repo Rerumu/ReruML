@@ -153,8 +153,8 @@ return function(Code)
 			local Th	= Peek(Tokens, Index + 2);
 			local Add;
 
-			if (Th == 'DATA') and (Nex == 'SLICE') then
-				Instr[#Instr + 1]	= Concat{'\6', Dt, '\0'};
+			if (Nex == 'DATA') and (Th == 'SLICE') then
+				Instr[#Instr + 1]	= Concat{'\6', Dx, '\0'};
 
 				Add	= 3;
 			else
