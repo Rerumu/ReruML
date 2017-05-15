@@ -150,11 +150,11 @@ return function(Code)
 		local Nex, Dx	= Peek(Tokens, Index + 1);
 
 		if (Tok == 'OPENC') then
-			local Th	= Peek(Tokens, Index + 2);
+			local Th, Dh	= Peek(Tokens, Index + 2);
 			local Add;
 
-			if (Th == 'SLICE') and (Nex == 'DATA') then
-				Instr[#Instr + 1]	= Concat{'\6', Dt, '\0'};
+			if (Nex == 'SLICE') and (Th == 'DATA') then
+				Instr[#Instr + 1]	= Concat{'\6', Dh, '\0'};
 
 				Add	= 3;
 			else
