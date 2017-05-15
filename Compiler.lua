@@ -10,7 +10,7 @@ local Str		= tostring;
 local Mixed		= {};
 local Symbols	= {
 	'<', '>', '!', '~';
-	'#', ':', '/';
+	'#', '=', '/';
 };
 
 local Tokens	= {
