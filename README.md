@@ -35,7 +35,7 @@ Html is the closest syntax highlighting I can get to.
 		Size:[UDim2 1, 0, 0.1, 0]
 		!Visible ; This makes it "not Visible". Opposite of what it was.
 	>
-<ScreenGui/> ; This closes and goes back to the previous layer if any.
+</ScreenGui> ; This closes and goes back to the previous layer if any.
 ```
 
 The Lua should look a bit like this.
@@ -61,7 +61,7 @@ local Code	= [[
 			Size:[UDim2 1, 0, 0.1, 0]
 			!Visible
 		>
-	<ScreenGui/>
+	</ScreenGui>
 ]];
 
 local Byte	= Confi(Code);
