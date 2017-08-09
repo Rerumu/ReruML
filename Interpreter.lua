@@ -160,6 +160,7 @@ return function(Byte, Env)
 	return function()
 		local Stacks	= {};
 		local Current;
+		local First; -- The return.
 
 		for Idx = 1, #Final do
 			local Data	= Final[Idx];
@@ -173,12 +174,20 @@ return function(Byte, Env)
 
 				Current	= Cr;
 				Insert(Stacks, 1, Cr);
+				
+				if (not First) then
+					First	= Cr;
+				end;
 			elseif (Intr == 2) then -- ANEW
 				local Cr	= New(A);
 
 				Cr.Parent	= Current;
 
 				Current	= Cr;
+				
+				if (not First) then
+					First	= Cr;
+				end;
 			elseif (Intr == 3) then -- SET
 				Current[A]	= Process(Env, B);
 			elseif (Intr == 4) then -- NEG
@@ -186,14 +195,14 @@ return function(Byte, Env)
 			elseif (Intr == 5) then -- GLO
 				Env[A]		= Process(Env, B);
 			elseif (Intr == 6) then -- CLS
-				if (Str(Stacks[1]) == B) and (#Stacks > 1) then
-					Stacks[1]	= nil;
+				if Stacks[1] and (Stacks[1].ClassName == A) then
+					Remove(Stacks, 1); -- Fixed some parenting stuff.
 				end;
 
 				Current	= Stacks[1];
 			end;
 		end;
 
-		return Stacks[#Stacks];
+		return First;
 	end;
 end;

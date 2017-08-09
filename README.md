@@ -9,6 +9,8 @@ The language was inspired by [cntkillme](https://www.roblox.com/users/294568/pro
 This source is entirely made by [Rerumu](https://www.roblox.com/users/70540486/profile).
 It is to be noted that the compiler and interpreter are independent and do not rely on eachother. That said, you can pre-compile your code into bytecode strings and they will run normally at runtime or be sent over machines to be interpreted.
 
+Recent addition of a serializer. Why create instances using this and (probably) take forever when you can just use the serializer? Calling the serializer with the arguments Serializer(Instance Object) will return a ReruML string of code to generate the instance with all its children. **Cough** Compiling your guis serverside and sending bytecode to the client to obfuscate and prevent tampering. **Cough**
+
 As always; I am not perfect so please inform me of any bugs!
 
 *Note: For those of you who may be a bit more into it or advanced I have created a decompiler you can debug with.*
