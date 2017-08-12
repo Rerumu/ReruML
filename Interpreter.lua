@@ -166,7 +166,7 @@ return function(Byte, Env)
 			local Data	= Final[Idx];
 			local Intr	= Data[1];
 			local A, B	= Data[2], Data[3];
-
+			
 			if (Intr == 1) then -- NEW
 				local Cr	= New(A);
 
@@ -178,23 +178,13 @@ return function(Byte, Env)
 				if (not First) then
 					First	= Cr;
 				end;
-			elseif (Intr == 2) then -- ANEW
-				local Cr	= New(A);
-
-				Cr.Parent	= Current;
-
-				Current	= Cr;
-				
-				if (not First) then
-					First	= Cr;
-				end;
-			elseif (Intr == 3) then -- SET
-				Current[A]	= Process(Env, B);
-			elseif (Intr == 4) then -- NEG
+			elseif (Intr == 2) then -- SET
+				Current[A]	= Process(B);
+			elseif (Intr == 3) then -- NEG
 				Current[A]	= (not Current[A]);
-			elseif (Intr == 5) then -- GLO
-				Env[A]		= Process(Env, B);
-			elseif (Intr == 6) then -- CLS
+			elseif (Intr == 4) then -- GLO
+				Env[A]		= Process(B);
+			elseif (Intr == 5) then -- CLS
 				if Stacks[1] and (Stacks[1].ClassName == A) then
 					Remove(Stacks, 1); -- Fixed some parenting stuff.
 				end;

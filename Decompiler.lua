@@ -81,15 +81,13 @@ return function(Byte)
 			Buff	= Concat{Buff, Rep('\9', Stack), '<', A};
 
 			Stack	= Stack + 1;
-		elseif (Intr == 2) then -- ANEW
-			Buff	= Concat{Buff, Rep('\9', Stack), '<~', A};
-		elseif (Intr == 3) then -- SET
+		elseif (Intr == 2) then -- SET
 			Buff	= Concat{Buff, ' ', A, ':', B};
-		elseif (Intr == 4) then -- NEG
+		elseif (Intr == 3) then -- NEG
 			Buff	= Concat{Buff, ' !', A};
-		elseif (Intr == 5) then -- GLO
+		elseif (Intr == 4) then -- GLO
 			Buff	= Concat{Buff, '#', A, ':', B, '\n'};
-		elseif (Intr == 6) then -- CLS
+		elseif (Intr == 5) then -- CLS
 			if A then
 				Stack	= Stack - 1;
 

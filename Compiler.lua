@@ -9,12 +9,12 @@ local Str		= tostring;
 
 local Mixed		= {};
 local Symbols	= {
-	'<', '>', '!', '~';
+	'<', '>', '!';
 	'#', '=', '/';
 };
 
 local Tokens	= {
-	'OPENC', 'CLOSEC', 'INV', 'ANONYM';
+	'OPENC', 'CLOSEC', 'INV';
 	'DEFINE', 'SET', 'SLICE';
 };
 
@@ -154,32 +154,24 @@ return function(Code)
 			local Add;
 
 			if (Nex == 'SLICE') and (Th == 'DATA') then
-				Instr[#Instr + 1]	= Concat{'\6', Dh, '\0'};
+				Instr[#Instr + 1]	= Concat{'\5', Dh, '\0'};
 
 				Add	= 3;
 			else
-				local Start	= 1;
-
-				if (Nex == 'ANONYM') then
-					Start	= 2;
-				end;
-
-				local _, Name	= Peek(Tokens, Index + Start);
+				local _, Name	= Peek(Tokens, Index + 1);
 
 				Add		= 1;
-				Skip			= Skip + Start;
-				Instr[#Instr + 1]	= Concat{Char(Start), Name, '\0'};
+				Skip	= Skip + 1;
+				Instr[#Instr + 1]	= Concat{'\1', Name, '\0'};
 
 				for Idx = (Skip + Idx), #Tokens do
 					local T, D	= Peek(Tokens, Idx + Add);
 					local N, K	= Peek(Tokens, Idx + Add + 1);
 
 					if (T == 'CLOSEC') then
-						Instr[#Instr + 1]	= '\6\0';
-
 						break;
 					elseif (T == 'INV') and (N == 'DATA') then
-						Instr[#Instr + 1]	= Concat{'\4', K, '\0'};
+						Instr[#Instr + 1]	= Concat{'\3', K, '\0'};
 
 						Add	= Add + 2;
 					elseif (T == 'DATA') and (N == 'SET') then
@@ -187,7 +179,7 @@ return function(Code)
 
 						Add	= Add + 2;
 
-						Instr[#Instr + 1]	= Concat{'\3', D, K, '\0'};
+						Instr[#Instr + 1]	= Concat{'\2', D, K, '\0'};
 					end;
 				end;
 			end;
@@ -197,7 +189,7 @@ return function(Code)
 			local _, Def	= Peek(Tokens, Index + 3);
 
 			Skip				= Skip + 3;
-			Instr[#Instr + 1]	= Concat{'\5', Dx, Def, '\0'};
+			Instr[#Instr + 1]	= Concat{'\4', Dx, Def, '\0'};
 		end;
 	end;
 

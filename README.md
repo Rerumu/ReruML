@@ -19,25 +19,13 @@ As always; I am not perfect so please inform me of any bugs!
 Html is the closest syntax highlighting I can get to.
 
 ```Html
-#UDim2 = [*UDim2/new] ; The * means it is a path.
-#Serv = [*game/GetService] ; Because I am lazy.
-#Storage = [Serv game, "StarterGui"] ; Statements can only use " and no ' for strings.
+#UDim2 = [*UDim2/new] ; Semicolons are comments.
+#Color3 = [*Color3/new]
 
-; Semicolons are used to start and end comments unless a newline does so.
-
-<ScreenGui Name = 'Test' Parent = Storage> ; Globals are handled as usual.
-	<~Frame ; The ~ means it is automatically closed.
-		Name = 'Top'
-		Size = [UDim2 1, 0, 0.1, 0] ; Without the * it calls the function with the args given.
-	>
-	<~TextBox
-		Name = 'Text' ; Strings are handled as usual.
-		Text = 'Five hours later.'
-		Position = [UDim2 0, 0, 0.1, 0]
-		Size = [UDim2 1, 0, 0.1, 0]
-		!Visible ; This makes it "not Visible". Opposite of what it was.
-	>
-</ScreenGui> ; This closes and goes back to the previous layer if any.
+<ScreenGui Enabled = true Name = "Screen">
+	<TextLabel Active = false BackgroundColor3 = [Color3 1, 1, 1] BackgroundTransparency = 0 BorderColor3 = [Color3 0.105, 0.164, 0.207] BorderSizePixel = 1 ClipsDescendants = false Draggable = false Font = "SourceSans" LayoutOrder = 0 Name = "Test" Position = [UDim2 0, 0, 0, 0] Rotation = 0 Size = [UDim2 1, 0, 0.05, 0] SizeConstraint = "RelativeXY" Text = "ton for pres" TextColor3 = [Color3 0.105, 0.164, 0.207] TextScaled = false TextStrokeColor3 = [Color3 0, 0, 0] TextStrokeTransparency = 1 TextTransparency = 0 TextWrapped = false TextXAlignment = "Center" TextYAlignment = "Center" Visible = true ZIndex = 1></TextLabel>
+	<TextBox Active = true BackgroundColor3 = [Color3 0.333, 0.666, 0.498] BackgroundTransparency = 0 BorderColor3 = [Color3 0.105, 0.164, 0.207] BorderSizePixel = 1 ClipsDescendants = false Draggable = false Font = "SourceSans" LayoutOrder = 0 Name = "TextBox" Position = [UDim2 0, 0, 0.5, 0] Rotation = 0 Size = [UDim2 1, 0, 0, 50] SizeConstraint = "RelativeXY" Text = "woosh" TextColor3 = [Color3 0.105, 0.164, 0.207] TextScaled = false TextStrokeColor3 = [Color3 0, 0, 0] TextStrokeTransparency = 1 TextTransparency = 0 TextWrapped = false TextXAlignment = "Center" TextYAlignment = "Center" Visible = true ZIndex = 1></TextBox>
+</ScreenGui>
 ```
 
 The Lua should look a bit like this.
@@ -48,26 +36,16 @@ local Intr	= require(PathToInterpreter);
 
 local Code	= [[
 	#UDim2 = [*UDim2/new]
-	#Serv = [*game/GetService]
-	#Storage = [Serv game, "StarterGui"]
+	#Color3 = [*Color3/new]
 
-	<ScreenGui Name = 'Test' Parent = Storage>
-		<~Frame
-			Name = 'Top'
-			Size = [UDim2 1, 0, 0.1, 0]
-		>
-		<~TextBox
-			Name = 'Text'
-			Text = 'Five hours later.'
-			Position = [UDim2 0, 0, 0.1, 0]
-			Size = [UDim2 1, 0, 0.1, 0]
-			!Visible
-		>
+	<ScreenGui Enabled = true Name = "Screen">
+		<TextLabel Active = false BackgroundColor3 = [Color3 1, 1, 1] BackgroundTransparency = 0 BorderColor3 = [Color3 0.105, 0.164, 0.207] BorderSizePixel = 1 ClipsDescendants = false Draggable = false Font = "SourceSans" LayoutOrder = 0 Name = "Test" Position = [UDim2 0, 0, 0, 0] Rotation = 0 Size = [UDim2 1, 0, 0.05, 0] SizeConstraint = "RelativeXY" Text = "ton for pres" TextColor3 = [Color3 0.105, 0.164, 0.207] TextScaled = false TextStrokeColor3 = [Color3 0, 0, 0] TextStrokeTransparency = 1 TextTransparency = 0 TextWrapped = false TextXAlignment = "Center" TextYAlignment = "Center" Visible = true ZIndex = 1></TextLabel>
+		<TextBox Active = true BackgroundColor3 = [Color3 0.333, 0.666, 0.498] BackgroundTransparency = 0 BorderColor3 = [Color3 0.105, 0.164, 0.207] BorderSizePixel = 1 ClipsDescendants = false Draggable = false Font = "SourceSans" LayoutOrder = 0 Name = "TextBox" Position = [UDim2 0, 0, 0.5, 0] Rotation = 0 Size = [UDim2 1, 0, 0, 50] SizeConstraint = "RelativeXY" Text = "woosh" TextColor3 = [Color3 0.105, 0.164, 0.207] TextScaled = false TextStrokeColor3 = [Color3 0, 0, 0] TextStrokeTransparency = 1 TextTransparency = 0 TextWrapped = false TextXAlignment = "Center" TextYAlignment = "Center" Visible = true ZIndex = 1></TextBox>
 	</ScreenGui>
 ]];
 
 local Byte	= Confi(Code);
-local Gui	  = Intr(Byte, getfenv());
+local Gui	= Intr(Byte, getfenv());
 
-Gui(); -- Creates the Gui (and returns it).
+Gui().Parent	= workspace; -- Creates the Gui (and returns it).
 ```
