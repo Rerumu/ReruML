@@ -1,5 +1,5 @@
 local Properties	= { -- Bunch of properties.
-	'Active',
+	'Active', -- NOT COMPATIBLE (for the most part) WITH CURRENT VERSION
 	'AlwaysOnTop',
 	'BackgroundColor3',
 	'BackgroundTransparency',
